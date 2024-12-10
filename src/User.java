@@ -4,6 +4,17 @@ public class User {
     private String email;
     private int level;
     private String nativeLanguage;
+    private int id;
+
+    public User(String name, String nativeLanguage, String surname, String email, int level, int id) {
+        this.name = name;
+        this.nativeLanguage = nativeLanguage;
+        this.surname = surname;
+        this.email = email;
+        this.level = level;
+        this.id = id;
+
+    }
 
     public String getName() {
         return name;
@@ -45,11 +56,4 @@ public class User {
         this.nativeLanguage = nativeLanguage;
     }
 
-    public User(String name, String nativeLanguage, String surname, String email, int level) {
-        this.name = name;
-        this.nativeLanguage = nativeLanguage;
-        this.surname = surname;
-        this.email = email;
-        this.level = level;
-    }
 }
