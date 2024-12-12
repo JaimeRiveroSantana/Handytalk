@@ -1,15 +1,35 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        // Creo una instancia de la clase User
+        User user = new User("Itziar", "Spanish", "Marrero Rodríguez", "itziar@gmail.com", 1, 100);
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        // Mostrar los detalles del Usuario
+        System.out.println("Datos del usuario:");
+        System.out.println("Nombre: " + user.getName());
+        System.out.println("Apellido: " + user.getSurname());
+        System.out.println("Correo Electrónico: " + user.getEmail());
+        System.out.println("Idioma Nativo: " +  user.getNativeLanguage());
+        System.out.println("Nivel: " + user.getLevel());
+        System.out.println("ID: "+ user.getId());
+
+
+        // Creo una instancia de UserProgress asociada a este usuario
+        UserProgress progress = new UserProgress(user.getId(), "English", 5, 100);
+
+        // Mostrar el progreso inicial
+        System.out.println("\nProgreso inicial del usuario:");
+        System.out.println("Idioma que esta aprendiendo: " + progress.getLearningLanguage());
+        System.out.println("Lecciones completadas: " + progress.getLessonCompleted());
+        System.out.println("Puntos totales: " + progress.getTotalPoints());
+
+        // Actualizo el progreso
+        progress.increaseLessonCompleted(3);
+        progress.addPoints(50);
+
+        // Mostrar el progreso actualizado
+        System.out.println("\nProgreso actualizado del usuario:");
+        System.out.println("Idioma que está aprendiendo: " + progress.getLearningLanguage());
+        System.out.println("Lecciones completadas: " + progress.getLessonCompleted());
+        System.out.println("Puntos totales: " + progress.getTotalPoints());
     }
 }
