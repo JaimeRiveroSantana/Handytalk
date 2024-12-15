@@ -20,7 +20,7 @@ public class Lesson {
     }
 
     public void displayLesson() {
-        System.out.println("Lekcja: " + title);
-        System.out.println("Treść: " + content);
+        System.out.println("Lesson: " + title);
+        System.out.println("Content: " + content);
     }
 }
