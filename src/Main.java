@@ -1,35 +1,49 @@
 public class Main {
     public static void main(String[] args) {
-        // Creo una instancia de la clase User
-        User user = new User("Itziar", "Spanish", "Marrero Rodríguez", "itziar@gmail.com", 1, 100);
+        InterfaceLifeSystem lifeSystem = new LifeSystem(3);
 
-        // Mostrar los detalles del Usuario
-        System.out.println("Datos del usuario:");
-        System.out.println("Nombre: " + user.getName());
-        System.out.println("Apellido: " + user.getSurname());
-        System.out.println("Correo Electrónico: " + user.getEmail());
-        System.out.println("Idioma Nativo: " +  user.getNativeLanguage());
-        System.out.println("Nivel: " + user.getLevel());
-        System.out.println("ID: "+ user.getId());
+        Course signLanguageCourse = new Course("Introduction to Sign Language", "American Sign Language");
 
+        Lesson lesson1 = new Lesson("Basic Greetings", "Learn how to greet using basic signs.");
+        Lesson lesson2 = new Lesson("Numbers", "Learn how to count from 1 to 10 using signs.");
+        Lesson lesson3 = new Lesson("Colors", "Learn the basic colors in sign language.");
 
-        // Creo una instancia de UserProgress asociada a este usuario
-        UserProgress progress = new UserProgress(user.getId(), "English", 5, 100);
+        signLanguageCourse.addLesson(lesson1);
+        signLanguageCourse.addLesson(lesson2);
+        signLanguageCourse.addLesson(lesson3);
 
-        // Mostrar el progreso inicial
-        System.out.println("\nProgreso inicial del usuario:");
-        System.out.println("Idioma que esta aprendiendo: " + progress.getLearningLanguage());
-        System.out.println("Lecciones completadas: " + progress.getLessonCompleted());
-        System.out.println("Puntos totales: " + progress.getTotalPoints());
+        InterfaceProgress progress = new Progress(new User("John Doe", "john.doe@example.com", lifeSystem, null), signLanguageCourse);
 
-        // Actualizo el progreso
-        progress.increaseLessonCompleted(3);
-        progress.addPoints(50);
+        User user = new User("John Doe", "john.doe@example.com", lifeSystem, progress);
+        System.out.println(user);
 
-        // Mostrar el progreso actualizado
-        System.out.println("\nProgreso actualizado del usuario:");
-        System.out.println("Idioma que está aprendiendo: " + progress.getLearningLanguage());
-        System.out.println("Lecciones completadas: " + progress.getLessonCompleted());
-        System.out.println("Puntos totales: " + progress.getTotalPoints());
+        System.out.println("\nInitial Progress:");
+        System.out.println(progress.showProgress());
+
+        progress.completeLesson(lesson1);
+        progress.completeLesson(lesson2);
+
+        System.out.println("\nProgress after completing some lessons:");
+        System.out.println(progress.showProgress());
+
+        System.out.println("Progress Percentage: " + progress.getProgressPercentage() + "%");
+
+        progress.completeLesson(lesson3);
+        System.out.println("\nProgress after completing the course:");
+        System.out.println(progress.showProgress());
+        System.out.println("Course Completed: " + progress.isCourseCompleted());
+
+        if (progress.isCourseCompleted()) {
+            user.incrementLevel();
+        }
+        System.out.println("\nUser state after completing the course:");
+        System.out.println(user);
+
+        System.out.println("\nTesting life system:");
+        user.getLifeSystem().loseLife();
+        user.getLifeSystem().loseLife();
+        System.out.println(user.getLifeSystem());
+        user.getLifeSystem().recoverLife();
+        System.out.println(user.getLifeSystem());
     }
 }
